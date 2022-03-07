@@ -14,10 +14,10 @@ public class Hello {
     int width = 50;
     for (int i = 0; i < height; i++) {
       for (int j = 0; j < width; j++) {
-        if (j == 22) {
-          System.out.print("#");
-        } else {
+        if ((j > 20 && j < 23) || i == 9) {
           System.out.print(" ");
+        } else {
+          System.out.print("#");
         }
       }
       System.out.println("");
