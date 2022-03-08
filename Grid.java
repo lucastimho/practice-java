@@ -1,8 +1,8 @@
 public class Grid {
-  public static void take_a_nap() {
+  public static void take_a_nap(int duration) {
     // puts computer to sleep for 0.5 seconds
     try {
-      java.lang.Thread.sleep(500);
+      java.lang.Thread.sleep(duration);
     } catch (Exception e) {
       e.printStackTrace(System.err);
       System.exit(1);
@@ -31,7 +31,7 @@ public class Grid {
         }
         System.out.println("");
       }
-      take_a_nap();
+      take_a_nap(500);
       // move hole diagonally
       x++;
       y++;
