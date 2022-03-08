@@ -15,6 +15,8 @@ public class Grid {
     int y = 7;
     int height = 20;
     int width = 50;
+    int vx = 1; // horizontal ball velocity
+    int vy = 1; // vertical ball velocity
     for (int frame = 0; frame < 100; frame++) {
       // draws blank lines
       for (int i = 0; i < 15; i++) {
@@ -31,10 +33,16 @@ public class Grid {
         }
         System.out.println("");
       }
-      take_a_nap(500);
+      take_a_nap(100);
       // move hole diagonally
-      x++;
-      y++;
+      x += vx;
+      y += vy;
+      if (x >= width || x == 0) {
+        vx *= -1;
+      }
+      if (y >= height || y == 0) {
+        vy *= -1;
+      }
     }
   }
 }
