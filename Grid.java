@@ -1,4 +1,14 @@
 public class Grid {
+  public static void take_a_nap() {
+    // puts computer to sleep for 0.5 seconds
+    try {
+      java.lang.Thread.sleep(500);
+    } catch (Exception e) {
+      e.printStackTrace(System.err);
+      System.exit(1);
+    }
+  }
+
   public static void main(String[] args) {
     System.out.println("Current dir: " + System.getProperty("user.dir"));
     int x = 23;
@@ -21,13 +31,8 @@ public class Grid {
         }
         System.out.println("");
       }
-      // puts computer to sleep for 0.5 seconds
-      try {
-        java.lang.Thread.sleep(500);
-      } catch (Exception e) {
-        e.printStackTrace(System.err);
-        System.exit(1);
-      }
+      take_a_nap();
+      // move hole diagonally
       x++;
       y++;
     }
