@@ -17,7 +17,13 @@ public class Grid {
             System.out.print("#");
           }
         }
-        System.out.println(j);
+        System.out.println("");
+      }
+      try {
+        java.lang.Thread.sleep(500);
+      } catch (Exception e) {
+        e.printStackTrace(System.err);
+        System.exit(1);
       }
     }
     System.out.println("Current dir: " + System.getProperty("user.dir"));
