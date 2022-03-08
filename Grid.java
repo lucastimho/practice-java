@@ -28,7 +28,8 @@ public class Grid {
         e.printStackTrace(System.err);
         System.exit(1);
       }
+      x++;
+      y++;
     }
-    System.out.println("Current dir: " + System.getProperty("user.dir"));
   }
 }
