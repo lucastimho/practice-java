@@ -60,6 +60,7 @@ public class Grid {
       take_a_nap(100);
       // move hole diagonally
       ball.move(width, height);
+      System.out.println(frame);
     }
   }
 }
