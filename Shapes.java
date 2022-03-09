@@ -35,7 +35,13 @@ class Rect extends Shapes {
 }
 
 class Triangle extends Shapes {
+  Point a;
+  Point b;
+  Point c;
 
+  Triangle() {
+
+  }
 }
 
 public class Shapes {
