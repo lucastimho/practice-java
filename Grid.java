@@ -31,9 +31,8 @@ public class Grid {
         System.out.println("");
       }
       take_a_nap(100);
-      // move hole diagonally
+      // bouncing ball
       ball.move(width, height);
-      System.out.println(frame);
     }
   }
 }

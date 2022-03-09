@@ -1,4 +1,4 @@
-class Ball {
+public class Ball {
   int x;
   int y;
 
