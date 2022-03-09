@@ -13,7 +13,7 @@ class Point {
   }
 }
 
-class Rect {
+class Rect extends Shapes {
   Point tl;
   Point br;
 
@@ -26,6 +26,16 @@ class Rect {
     br.x += horz;
     br.y += vert;
   }
+
+  double area() {
+    double w = br.x - tl.x;
+    double h = br.y - tl.y;
+    return w * h;
+  }
+}
+
+class Triangle extends Shapes {
+
 }
 
 public class Shapes {
@@ -34,5 +44,9 @@ public class Shapes {
     Rect r = new Rect();
     Rect r2d2 = new Rect();
     r2d2.stretch(3.0, 2.0);
+    System.out.println("The area of r is ");
+    System.out.println(r.area());
+    System.out.println("The area of r2d2 is ");
+    System.out.println(r2d2.area());
   }
 }
