@@ -54,7 +54,7 @@ public class Shapes {
   }
 
   public static void main(String[] args) {
-    Point p = new Point(1.5, 2.0);
+    // Point p = new Point(1.5, 2.0);
     Rect rectina = new Rect();
     double arina = rectina.area();
     System.out.print("The area of arina is ");
