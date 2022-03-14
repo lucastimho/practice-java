@@ -19,35 +19,31 @@ import javax.swing.JButton;
 import java.awt.Color;
 
 class Model {
-  int turtle_x;
-  int turtle_y;
-  int dest_x;
-  int dest_y;
+  int bird_x;
+  int bird_y;
+  double vert_vel;
+  int time_since_flap;
 
   Model() {
 
   }
 
   void update() {
-    if (turtle_x < dest_x)
-      turtle_x++;
-    if (turtle_x > dest_x)
-      turtle_x--;
-    if (turtle_y < dest_y)
-      turtle_y++;
-    if (turtle_y > dest_y)
-      turtle_y--;
+    vert_vel += 1.5;
+    bird_y += vert_vel;
+    time_since_flap++;
   }
 
-  void setDestination(int dx, int dy) {
-    dest_x = dx;
-    dest_y = dy;
+  void onClick() {
+    vert_vel = -18;
+    time_since_flap = 0;
   }
 }
 
 class View extends JPanel {
   JButton b1;
-  Image turtle_image;
+  Image bird_image1;
+  Image bird_image2;
   Model mod;
 
   View(Controller c, Model m) {
@@ -57,7 +53,8 @@ class View extends JPanel {
     b1.addActionListener(c);
 
     try {
-      turtle_image = ImageIO.read(new File("turtle.png"));
+      bird_image1 = ImageIO.read(new File("bird1.png"));
+      bird_image2 = ImageIO.read(new File("bird2.png"));
     } catch (Exception e) {
       e.printStackTrace(System.err);
       System.exit(1);
@@ -66,9 +63,10 @@ class View extends JPanel {
 
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    g.setColor(Color.cyan);
-    g.fillRect(0, 0, 500, 500);
-    g.drawImage(turtle_image, mod.turtle_x, mod.turtle_y, null);
+    if (mod.time_since_flap < 5)
+      g.drawImage(bird_image2, mod.bird_x, mod.bird_y, null);
+    else
+      g.drawImage(bird_image1, mod.bird_x, mod.bird_y, null);
   }
 }
 
@@ -84,8 +82,7 @@ class Controller implements ActionListener, MouseListener {
   }
 
   public void mousePressed(MouseEvent e) {
-    // Control the turtle
-    mod.setDestination(e.getX(), e.getY());
+    mod.onClick();
   }
 
   public void mouseReleased(MouseEvent e) {
