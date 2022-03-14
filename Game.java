@@ -19,6 +19,9 @@ import javax.swing.JButton;
 
 class View extends JPanel {
   View(Controller c) {
+    JButton b1 = new JButton("Push me");
+    add(b1);
+    b1.addActionListener(c);
   }
 
   public void paintComponent(Graphics g) {
@@ -31,6 +34,7 @@ class Controller implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent e) {
+    System.out.println("You really know how to push my buttons.");
   }
 }
 
