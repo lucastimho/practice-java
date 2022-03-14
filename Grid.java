@@ -14,8 +14,8 @@ public class Grid {
   public static void main(String[] args) {
     System.out.println("Current dir: " + System.getProperty("user.dir"));
     Random r = new Random();
-    int i = r.nextInt(1234);
-    System.out.println(i);
+    int q = r.nextInt(1234);
+    System.out.println(q);
     int height = 20;
     int width = 50;
     Ball ball = new Ball();
