@@ -18,34 +18,56 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Color;
 
-class Model {
-  int bird_x;
-  int bird_y;
+class Bird {
+  int x;
+  int y;
   double vert_vel;
   int time_since_flap;
-  int tube_x;
-  int tube_y;
 
-  Model() {
-    tube_x = 200;
-    tube_y = 300;
+  void update() {
+    vert_vel += 1.5;
+    y += vert_vel;
+    time_since_flap++;
+  }
+
+  void flap() {
+    vert_vel = -18;
+    time_since_flap = 0;
+  }
+}
+
+class Tube {
+  int x;
+  int y;
+
+  Tube() {
+    x = 200;
+    y = 300;
   }
 
   void update() {
-    // Move the bird
-    vert_vel += 1.5;
-    bird_y += vert_vel;
-    time_since_flap++;
+    x -= 8;
+    if (x < -100)
+      x = 500;
+  }
+}
 
-    // Move the tube
-    tube_x -= 8;
-    if (tube_x < -100)
-      tube_x = 500;
+class Model {
+  Bird bird;
+  Tube tube;
+
+  Model() {
+    bird = new Bird();
+    tube = new Tube();
+  }
+
+  void update() {
+    bird.update();
+    tube.update();
   }
 
   void onClick() {
-    vert_vel = -18;
-    time_since_flap = 0;
+    bird.flap();
   }
 }
 
@@ -77,13 +99,13 @@ class View extends JPanel {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     // Draw the bird
-    if (mod.time_since_flap < 5)
-      g.drawImage(bird_image2, mod.bird_x, mod.bird_y, null);
+    if (mod.bird.time_since_flap < 5)
+      g.drawImage(bird_image2, mod.bird.x, mod.bird.y, null);
     else
-      g.drawImage(bird_image1, mod.bird_x, mod.bird_y, null);
+      g.drawImage(bird_image1, mod.bird.x, mod.bird.y, null);
 
     // Draw the tube
-    g.drawImage(tube_image2, mod.tube_x, mod.tube_y, null);
+    g.drawImage(tube_image2, mod.tube.x, mod.tube.y, null);
   }
 }
 
