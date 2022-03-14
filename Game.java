@@ -38,8 +38,8 @@ public class Game extends JFrame {
   public Game() {
     Controller c = new Controller();
     View v = new View(c);
-    setTitle("Untitled");
-    setSize(1000, 700);
+    setTitle("Flappy");
+    setSize(500, 500);
     getContentPane().add(v);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
