@@ -39,17 +39,32 @@ class Controller implements ActionListener {
 }
 
 public class Game extends JFrame {
+  View view;
+
   public Game() {
     Controller c = new Controller();
-    View v = new View(c);
+    view = new View(c);
     setTitle("Flappy");
     setSize(500, 500);
-    getContentPane().add(v);
+    getContentPane().add(view);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   }
 
+  static void take_a_nap(int miliseconds) {
+    try {
+      java.lang.Thread.sleep(miliseconds);
+    } catch (Exception e) {
+      e.printStackTrace(System.err);
+      System.exit(1);
+    }
+  }
+
   public static void main(String[] args) {
-    new Game();
+    Game g = new Game();
+    while (true) {
+      g.view.repaint(); // calls View.paintComponent
+      take_a_nap(50); // sleeps for 50 miliseconds
+    }
   }
 }
