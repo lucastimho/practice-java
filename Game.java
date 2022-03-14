@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import java.awt.Color;
 
 class Model {
   int turtle_x;
@@ -26,7 +27,7 @@ class Model {
   }
 
   void update() {
-
+    turtle_x++;
   }
 }
 
@@ -51,6 +52,8 @@ class View extends JPanel {
 
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
+    g.setColor(Color.cyan);
+    g.fillRect(0, 0, 500, 500);
     g.drawImage(turtle_image, mod.turtle_x, mod.turtle_y, null);
   }
 }
