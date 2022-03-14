@@ -21,13 +21,27 @@ import java.awt.Color;
 class Model {
   int turtle_x;
   int turtle_y;
+  int dest_x;
+  int dest_y;
 
   Model() {
 
   }
 
   void update() {
-    turtle_x++;
+    if (turtle_x < dest_x)
+      turtle_x++;
+    if (turtle_x > dest_x)
+      turtle_x--;
+    if (turtle_y < dest_y)
+      turtle_y++;
+    if (turtle_y > dest_y)
+      turtle_y--;
+  }
+
+  void setDestination(int dx, int dy) {
+    dest_x = dx;
+    dest_y = dy;
   }
 }
 
@@ -58,12 +72,32 @@ class View extends JPanel {
   }
 }
 
-class Controller implements ActionListener {
-  Controller() {
+class Controller implements ActionListener, MouseListener {
+  Model mod;
+
+  Controller(Model m) {
+    mod = m;
   }
 
   public void actionPerformed(ActionEvent e) {
     System.out.println("You really know how to push my buttons.");
+  }
+
+  public void mousePressed(MouseEvent e) {
+    // Control the turtle
+    mod.setDestination(e.getX(), e.getY());
+  }
+
+  public void mouseReleased(MouseEvent e) {
+  }
+
+  public void mouseEntered(MouseEvent e) {
+  }
+
+  public void mouseExited(MouseEvent e) {
+  }
+
+  public void mouseClicked(MouseEvent e) {
   }
 }
 
@@ -72,9 +106,10 @@ public class Game extends JFrame {
   Model model;
 
   public Game() {
-    Controller c = new Controller();
-    view = new View(c, model);
     model = new Model();
+    Controller c = new Controller(model);
+    view = new View(c, model);
+    view.addMouseListener(c);
     setTitle("Flappy");
     setSize(500, 500);
     getContentPane().add(view);
