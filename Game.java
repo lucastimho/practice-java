@@ -18,14 +18,25 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 
 class View extends JPanel {
+  JButton b1;
+  Image turtle_image;
+
   View(Controller c) {
-    JButton b1 = new JButton("Push me");
+    b1 = new JButton("Push me");
     add(b1);
     b1.addActionListener(c);
+
+    try {
+      turtle_image = ImageIO.read(new File("turtle.png"));
+    } catch (Exception e) {
+      e.printStackTrace(System.err);
+      System.exit(1);
+    }
   }
 
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
+    g.drawImage(turtle_image, 0, 0, null);
   }
 }
 
