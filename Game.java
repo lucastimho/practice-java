@@ -17,6 +17,7 @@ import javax.swing.Timer;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.util.Random;
 
 class Bird {
   int x;
@@ -37,6 +38,7 @@ class Bird {
 }
 
 class Tube {
+  static Random rand = new Random();
   int x;
   int y;
 
@@ -45,14 +47,35 @@ class Tube {
     y = 300;
   }
 
-  void update() {
+  void update(Bird bird) {
     x -= 8;
-    if (x < -100)
+    if (x < -100) {
       x = 500;
+      y = rand.nextInt(400) + 100;
+    }
+    if (doesCollide(bird))
+      System.out.println("CRASH!");
+  }
+
+  boolean doesCollide(Bird b) {
+    int bird_width = 64;
+    int bird_height = 57;
+    int tube_width = 55;
+    int tube_height = 400;
+    if (b.x + bird_width < x)
+      return false;
+    if (b.x > x + tube_width)
+      return false;
+    if (b.y > y + tube_height)
+      return false;
+    if (b.y + bird_height < y)
+      return false;
+    return true;
   }
 }
 
 class Model {
+
   Bird bird;
   Tube tube;
 
@@ -63,7 +86,7 @@ class Model {
 
   void update() {
     bird.update();
-    tube.update();
+    tube.update(bird);
   }
 
   void onClick() {
@@ -105,6 +128,7 @@ class View extends JPanel {
       g.drawImage(bird_image1, mod.bird.x, mod.bird.y, null);
 
     // Draw the tube
+    g.drawImage(tube_image1, mod.tube.x, mod.tube.y, null);
     g.drawImage(tube_image2, mod.tube.x, mod.tube.y, null);
   }
 }
