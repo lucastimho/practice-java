@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Grid {
   public static void take_a_nap(int duration) {
     // puts computer to sleep for 0.5 seconds
@@ -11,6 +13,9 @@ public class Grid {
 
   public static void main(String[] args) {
     System.out.println("Current dir: " + System.getProperty("user.dir"));
+    Random r = new Random();
+    int i = r.nextInt(1234);
+    System.out.println(i);
     int height = 20;
     int width = 50;
     Ball ball = new Ball();
